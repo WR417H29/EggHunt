@@ -18,7 +18,7 @@ def main():
     clock = pygame.time.Clock()
     font = pygame.font.SysFont('arial', 25)
     biggerFont = pygame.font.SysFont('arial', 45)
-    enemyLimit = 75
+    enemyLimit = 100
 
     player = PlayerWS(spawn = {'x': WIDTH // 2 + 8, 'y': HEIGHT // 2 + 8}, timeLimit=60)
 
@@ -87,7 +87,7 @@ def main():
 
         scoreDisp = font.render(f"Score: {player.score}", True, (0, 0, 0))
         timerDisp = font.render(f"Timer: {timeRemaining}", True, (0, 0, 0))
-        staminaLimitDisp = biggerFont.render(f"{player.stamina}/{player.staminaLimit}", True, (0, 0, 0))
+        staminaLimitDisp = biggerFont.render(f"{int(player.stamina)}/{player.staminaLimit}", True, (0, 0, 0))
 
         window.blit(scoreDisp, [0, 0])
         window.blit(timerDisp, [0, 25])

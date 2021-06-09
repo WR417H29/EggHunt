@@ -14,6 +14,7 @@ class Enemy(pygame.sprite.Sprite):
         self.radiusDrawn = radiusDrawn
         self.rect.x = self.spawn['x']
         self.rect.y = self.spawn['y']
+        self.moveSpeed = 1
 
         self.direction = 0
 
@@ -51,8 +52,8 @@ class Enemy(pygame.sprite.Sprite):
                 playerPos[1] - self.rect.y
             ]
 
-            self.rect.x += 1 if diff[0] >= 1 else -1
-            self.rect.y += 1 if diff[1] >= 1 else -1
+            self.rect.x += self.moveSpeed if diff[0] >= 1 else -self.moveSpeed
+            self.rect.y += self.moveSpeed if diff[1] >= 1 else -self.moveSpeed
 
         else:
             movement = random.randint(0, 90)

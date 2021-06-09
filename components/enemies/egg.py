@@ -9,7 +9,7 @@ class Egg(Enemy):
     def __init__(self, spawn, radius, radiusDrawn=False):
         Enemy.__init__(self, spawn, radius, radiusDrawn)
         self.image = pygame.image.load(f'{BASEDIR}\\assets\\eggs\\egg.png')
-        self.moveSpeed = 0.75
+        self.moveSpeed = 1
     
     def __repr__(self):
         return '<Egg %s>' % self.rect

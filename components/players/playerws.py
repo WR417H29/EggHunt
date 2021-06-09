@@ -12,14 +12,14 @@ class PlayerWS(Player):
         self.score = 0
     
     def update(self, keys):
-        if self.stamina == 0:
+        if self.stamina <= 1:
             self.sprinting = False
         if self.sprinting and self.stamina > 0:
             self.moveSpeed = 3
             self.stamina -= 1
         else:
             self.moveSpeed = 1
-            self.stamina += 2 if self.stamina < self.staminaLimit else 0
+            self.stamina += self.staminaLimit / 150 if self.stamina < self.staminaLimit else 0
 
         self.rect.y -= (keys[self.controls['up']]) * self.moveSpeed
         self.rect.y += (keys[self.controls['down']]) * self.moveSpeed
