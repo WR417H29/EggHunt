@@ -10,5 +10,5 @@ class TripleEgg(Egg):
 
     def onEat(self, player):
         player.score += 3
-        player.stamina += 10 if player.stamina < player.staminaLimit else 0
+        player.stamina += 10 if player.stamina < player.staminaLimit else player.staminaLimit - player.stamina
         self.kill()

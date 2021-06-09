@@ -10,6 +10,6 @@ class StaminaEgg(Egg):
 
     def onEat(self, player):
         player.score += 1
-        player.staminaLimit += 1
-        player.stamina += 10 if player.stamina < player.staminaLimit else 0
+        player.staminaLimit += 5
+        player.stamina += 10 if player.stamina+10 < player.staminaLimit else player.staminaLimit - player.stamina
         self.kill()

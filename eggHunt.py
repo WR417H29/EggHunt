@@ -18,9 +18,9 @@ def main():
     clock = pygame.time.Clock()
     font = pygame.font.SysFont('arial', 25)
     biggerFont = pygame.font.SysFont('arial', 45)
-    enemyLimit = 100
+    enemyLimit = 1000
 
-    player = PlayerWS(spawn = {'x': WIDTH // 2 + 8, 'y': HEIGHT // 2 + 8}, timeLimit=60000)
+    player = PlayerWS(spawn = {'x': WIDTH // 2 + 8, 'y': HEIGHT // 2 + 8}, timeLimit=60)
 
     startTime = time.time()
 
@@ -29,7 +29,7 @@ def main():
     timeRemaining = 0
     timer = f"Timer: {timeRemaining}"
 
-    eggRadius = 500
+    eggRadius = 1500
 
     while True:
         for event in pygame.event.get():
@@ -45,17 +45,16 @@ def main():
         if len(eggs) <= enemyLimit:
             eggChoice = random.randint(1, 100)
             spawn = {
-                'x': random.randint(100, WIDTH-100),
-                'y': random.randint(100, HEIGHT-100)
+                'x': random.randint(20, WIDTH-20),
+                'y': random.randint(20, HEIGHT-20)
             }
 
-            # if eggChoice <= 50: eggs.add(Egg(spawn, eggRadius))
-            # elif eggChoice > 50 and eggChoice <= 65: eggs.add(StaminaEgg(spawn, eggRadius))
-            # elif eggChoice > 65 and eggChoice <= 80: eggs.add(TimeEgg(spawn, eggRadius))
-            # elif eggChoice > 80 and eggChoice <= 95: eggs.add(TripleEgg(spawn, eggRadius))
-            # elif eggChoice > 95 and eggChoice <= 100: eggs.add(BombEgg(spawn, eggRadius+5))
+            if eggChoice <= 50: eggs.add(Egg(spawn, eggRadius))
+            elif eggChoice > 50 and eggChoice <= 80: eggs.add(StaminaEgg(spawn, eggRadius))
+            elif eggChoice > 80 and eggChoice <= 95: eggs.add(TimeEgg(spawn, eggRadius))
+            elif eggChoice > 95 and eggChoice <= 99: eggs.add(TripleEgg(spawn, eggRadius))
+            elif eggChoice > 99 and eggChoice <= 100: eggs.add(BombEgg(spawn, eggRadius*2))
 
-            eggs.add(StaminaEgg(spawn, eggRadius))
 
         window.fill((255, 255, 255))
 
@@ -72,7 +71,7 @@ def main():
         if startTime + player.timeLimit <= curTime:
             return endScreen(player.score)
         
-        if player.score <= 0:
+        if player.score < 0:
             return endScreen(player.score)
 
         for e in colGroup:
@@ -105,12 +104,19 @@ def endScreen(score):
 
     finalText = font.render(f'Final Score: {score}', True, (0, 0, 0))
 
+    button = Button([WIDTH // 2 - 48, HEIGHT // 2 + 32], "Restart", func=main)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                button.onClick(list(pygame.mouse.get_pos()))
+
 
         window.fill((255, 255, 255))
+
+        button.draw(window)
         
         window.blit(finalText, [(WIDTH // 2) - 150, (HEIGHT // 2) - 25])
 

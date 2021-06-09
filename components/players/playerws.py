@@ -9,7 +9,7 @@ class PlayerWS(Player):
         self.stamina = 100
         self.staminaLimit = 100
         self.timeLimit = timeLimit
-        self.score = 1
+        self.score = 0
     
     def update(self, keys):
         if self.stamina == 0:

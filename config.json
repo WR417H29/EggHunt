@@ -4,6 +4,6 @@
         "down": "s",
         "left": "a",
         "right": "d",
-        "toggleSprint": "e"
+        "toggleSprint": "space"
     }
 }
