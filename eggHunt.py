@@ -18,7 +18,7 @@ def main():
     clock = pygame.time.Clock()
     font = pygame.font.SysFont('arial', 25)
     biggerFont = pygame.font.SysFont('arial', 45)
-    enemyLimit = 1000
+    enemyLimit = 75
 
     player = PlayerWS(spawn = {'x': WIDTH // 2 + 8, 'y': HEIGHT // 2 + 8}, timeLimit=60)
 
@@ -29,7 +29,7 @@ def main():
     timeRemaining = 0
     timer = f"Timer: {timeRemaining}"
 
-    eggRadius = 1500
+    eggRadius = 15
 
     while True:
         for event in pygame.event.get():
