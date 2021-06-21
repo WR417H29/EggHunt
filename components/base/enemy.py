@@ -36,8 +36,8 @@ class Enemy(pygame.sprite.Sprite):
 
         self.rect.left = min(max(0, self.rect.left), WIDTH)
         self.rect.right = min(max(0, self.rect.right), WIDTH)
-        self.rect.top = min(max(0, self.rect.top), HEIGHT)
-        self.rect.bottom = min(max(0, self.rect.bottom), HEIGHT)
+        self.rect.top = min(max(0, self.rect.top), HEIGHT-100)
+        self.rect.bottom = min(max(0, self.rect.bottom), HEIGHT-100)
 
         range = [
             [self.rect.x + self.radius,
